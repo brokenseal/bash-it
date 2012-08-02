@@ -64,9 +64,9 @@ function scm_prompt_info {
   scm_prompt_char
   SCM_DIRTY=0
   SCM_STATE=''
-  [[ $SCM == $SCM_GIT ]] && git_prompt_info && return
-  [[ $SCM == $SCM_HG ]] && hg_prompt_info && return
-  [[ $SCM == $SCM_SVN ]] && svn_prompt_info && return
+  #[[ $SCM == $SCM_GIT ]] && git_prompt_info && return
+  #[[ $SCM == $SCM_HG ]] && hg_prompt_info && return
+  #[[ $SCM == $SCM_SVN ]] && svn_prompt_info && return
 }
 
 function git_prompt_vars {
