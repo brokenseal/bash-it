@@ -33,20 +33,16 @@ RBFU_THEME_PROMPT_SUFFIX='|'
 function scm {
   if [[ -f .git/HEAD ]]; then SCM=$SCM_GIT
   elif [[ -n "$(git symbolic-ref HEAD 2> /dev/null)" ]]; then SCM=$SCM_GIT
-  elif [[ -d .hg ]]; then SCM=$SCM_HG
-  elif [[ -n "$(hg root 2> /dev/null)" ]]; then SCM=$SCM_HG
-  elif [[ -d .svn ]]; then SCM=$SCM_SVN
   else SCM=$SCM_NONE
   fi
 }
 
 function scm_prompt_char {
   if [[ -z $SCM ]]; then scm; fi
-  if [[ $SCM == $SCM_GIT ]]; then SCM_CHAR=$SCM_GIT_CHAR
-  elif [[ $SCM == $SCM_HG ]]; then SCM_CHAR=$SCM_HG_CHAR
-  elif [[ $SCM == $SCM_SVN ]]; then SCM_CHAR=$SCM_SVN_CHAR
-  else SCM_CHAR=$SCM_NONE_CHAR
-  fi
+  #if [[ $SCM == $SCM_GIT ]]; then SCM_CHAR=$SCM_GIT_CHAR
+  #else
+  SCM_CHAR=$SCM_NONE_CHAR
+  #fi
 }
 
 function scm_prompt_vars {
@@ -55,8 +51,6 @@ function scm_prompt_vars {
   SCM_DIRTY=0
   SCM_STATE=''
   [[ $SCM == $SCM_GIT ]] && git_prompt_vars && return
-  [[ $SCM == $SCM_HG ]] && hg_prompt_vars && return
-  [[ $SCM == $SCM_SVN ]] && svn_prompt_vars && return
 }
 
 function scm_prompt_info {
@@ -65,8 +59,6 @@ function scm_prompt_info {
   SCM_DIRTY=0
   SCM_STATE=''
   #[[ $SCM == $SCM_GIT ]] && git_prompt_info && return
-  #[[ $SCM == $SCM_HG ]] && hg_prompt_info && return
-  #[[ $SCM == $SCM_SVN ]] && svn_prompt_info && return
 }
 
 function git_prompt_vars {
@@ -155,7 +147,7 @@ function svn_prompt_info {
 }
 
 function hg_prompt_info() {
-  hg_prompt_vars
+  #hg_prompt_vars
   echo -e "$SCM_PREFIX$SCM_BRANCH:${SCM_CHANGE#*:}$SCM_STATE$SCM_SUFFIX"
 }
 

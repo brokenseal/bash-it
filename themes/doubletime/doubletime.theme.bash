@@ -31,8 +31,8 @@ doubletime_scm_prompt() {
   CHAR=$(scm_char)
   if [ $CHAR = $SCM_NONE_CHAR ]; then
     return
-  elif [ $CHAR = $SCM_GIT_CHAR ]; then
-    echo "$(git_prompt_status)"
+  #elif [ $CHAR = $SCM_GIT_CHAR ]; then
+  #  echo "$(git_prompt_status)"
   else
     echo "[$(scm_prompt_info)]"
   fi
